@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Retro Forum</title>
+  <title>Student Forum</title>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,6 @@
           colors: {
             clifford: '#da373d',
 
-            g_color: '#1DD100',
           }
         }
       }
@@ -38,66 +37,54 @@
 
 <body>
   <header class="max-w-[1180px] mx-auto">
-    <div class="navbar bg-base-100">
+    <div class="navbar bg-base-100 my-10">
       <div class="flex-1">
-        <a class="btn btn-ghost font-extrabold text-xl">ReTro</a>
+        <a class="btn btn-ghost font-extrabold text-xl">R&T</a>
       </div>
       <div class="flex-none">
-        <div class="dropdown dropdown-end">
+        <div class="tooltip tooltip-close hover:tooltip-open tooltip-top" data-tip="Home">
+            
           <div tabindex="0" role="button" class="btn border-solid mr-3 border-slate-300 btn-ghost btn-circle">
             <div class="indicator">
               <i class="fa-solid fa-house"></i>
             </div>
           </div>
-          <div tabindex="0" class="mt-3 z-[-1] card card-compact dropdown-content w-3k">
-            <div class="text-white bg-black btn-block">Cart
-            </div>
-            
-          </div>
-          <div tabindex="0" class="mt-3 z-[-1] card card-compact dropdown-content w-3k">
-            <div class="text-white bg-black btn-block">Cart
-            </div>
-          </div>
-
+          
         </div>
-        <div class="dropdown dropdown-end">
+        <div class="tooltip tooltip-close hover:tooltip-open tooltip-top" data-tip="Tooltip">
+            
           <div tabindex="0" role="button" class="btn border-solid border-slate-300 mr-3 btn-ghost btn-circle">
             <div class="indicator">
               <i class="fa-solid fa-pencil"></i>
             </div>
           </div>
-          <div tabindex="0" class="mt-3 z-[-1] card card-compact dropdown-content w-3k">
-            <div class="text-white bg-black btn-block">Cart
-            </div>
-          </div>
+         
 
         </div>
-        <div class="dropdown dropdown-end">
+        <div class="tooltip tooltip-close hover:tooltip-open tooltip-top" data-tip="user">
+            
           <div tabindex="0" role="button" class="btn border-solid border-slate-300 mr-3 btn-ghost btn-circle">
             <div class="indicator">
               <i class="fa-solid fa-user"></i>
             </div>
           </div>
-          <div tabindex="0" class="mt-3 z-[-1] card card-compact dropdown-content w-3k">
-            <div class="text-white bg-black btn-block">Cart
-            </div>
-          </div>
+          
 
         </div>
-        <div class="dropdown dropdown-end">
+        <div class="tooltip tooltip-close hover:tooltip-open tooltip-top" data-tip="hello">
+            
           <div tabindex="0" role="button" class="btn border-solid border-slate-300 mr-3 btn-ghost btn-circle">
             <div class="indicator">
               <i class="fa-regular fa-flag"></i>
             </div>
           </div>
-          <div tabindex="0" class="mt-3 z-[-1] card card-compact dropdown-content w-3k">
-            <div class="text-white bg-black btn-block">Cart
-            </div>
-          </div>
+          
 
         </div>
         <div class="navbar-end">
-          <a class="btn bg-blue-600 text-white px-8">Sign In</a>
+          <button class="btn bg-blue-600 text-white px-8">Sign In</button>
+          
+          
         </div>
       </div>
 
@@ -108,14 +95,14 @@
       <div class="hero-content flex-col lg:flex-row">
         <div class="text-center lg:text-left">
           <h1 class="text-5xl font-extrabold text-white">Welcome to the <br>
-            <span class="text-blue-500">ReTro</span> Forum
+            <span class="text-blue-500">Student</span> Forum
           </h1>
           <p class="py-6 text-white">Share your favorite opinion and win and wp
             forum coffee mug!</p>
-          <label class="input input-bordered flex items-center gap-2 rounded-full">
-            <input type="text" class="grow" placeholder="Search here anything" />
-            <span class="badge badge-info p-4">Search</span>
-          </label>
+          <div class="bg-white p-5 flex items-center gap-2 rounded-full">
+            <input type="text" id="search-box" class="grow" placeholder="Search here anything" />
+            <button onclick="handleSearch()" id="search-btn" class="badge badge-info p-4">Search</button>
+          </div>
         </div>
         <div class="card shrink-0 w-1/2 ml-28 shadow-2xl bg-base-100 p-20">
           <div class="flex justify-between">
