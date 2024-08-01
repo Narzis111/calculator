@@ -1,66 +1,70 @@
-let displayElement = document.getElementById('display');
+let display = document.getElementById('display');
 let currentInput = '';
-let operator = '';
-let operand1 = null;
-let operand2 = null;
-
-function clearDisplay() {
-    currentInput = '';
-    operator = '';
-    operand1 = null;
-    operand2 = null;
-    displayElement.textContent = '0';
-}
+let currentOperator = null;
+let previousInput = '';
 
 function appendNumber(number) {
-    currentInput += number;
-    displayElement.textContent = currentInput;
+  currentInput += number;
+  updateDisplay(currentInput);
 }
 
-function appendOperator(op) {
-    if (currentInput === '' && op === '-') {
-        currentInput = '-';
-        displayElement.textContent = currentInput;
-        return;
-    }
-    if (operand1 === null) {
-        operand1 = parseFloat(currentInput);
-        operator = op;
-        currentInput = '';
-    } else {
-        if (currentInput !== '') {
-            operand2 = parseFloat(currentInput);
-            calculateResult();
-            operator = op;
-        } else {
-            operator = op;
-        }
-    }
+function appendOperator(operator) {
+  if (currentInput === '' && operator !== '-') return;
+  if (currentInput.includes('.') && operator === '.') return;
+
+  if (currentOperator !== null) {
+    calculateResult();
+  }
+
+  currentOperator = operator;
+  previousInput = currentInput;
+  currentInput = '';
+}
+
+function appendDecimal() {
+  if (!currentInput.includes('.')) {
+    currentInput += '.';
+    updateDisplay(currentInput);
+  }
+}
+
+function clearDisplay() {
+  currentInput = '';
+  currentOperator = null;
+  previousInput = '';
+  updateDisplay('0');
 }
 
 function calculateResult() {
-    if (operand1 !== null && operator !== '' && currentInput !== '') {
-        operand2 = parseFloat(currentInput);
-        let result;
-        switch (operator) {
-            case '+':
-                result = operand1 + operand2;
-                break;
-            case '-':
-                result = operand1 - operand2;
-                break;
-            case '*':
-                result = operand1 * operand2;
-                break;
-            case '/':
-                result = operand1 / operand2;
-                break;
-            default:
-                return;
-        }
-        displayElement.textContent = result;
-        operand1 = result;
-        currentInput = '';
-        operator = '';
-    }
+  let result;
+  const prev = parseFloat(previousInput);
+  const current = parseFloat(currentInput);
+
+  if (isNaN(prev) || isNaN(current)) return;
+
+  switch (currentOperator) {
+    case '+':
+      result = prev + current;
+      break;
+    case '-':
+      result = prev - current;
+      break;
+    case '*':
+      result = prev * current;
+      break;
+    case '/':
+      result = prev / current;
+      break;
+    default:
+      return;
+  }
+
+  currentInput = result.toString();
+  currentOperator = null;
+  previousInput = '';
+  updateDisplay(currentInput);
+}
+
+function updateDisplay(value) {
+  display.innerText = value;
 }
